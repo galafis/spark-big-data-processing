@@ -20,6 +20,23 @@
 
 ## English
 
+## 📊 Architecture Diagram
+
+```mermaid
+graph TB
+    A[Data Sources] --> B[Spark Cluster]
+    B --> C[Driver Program]
+    C --> D[Executors]
+    D --> E[Tasks]
+    E --> F[RDDs/DataFrames]
+    F --> G[Results]
+    
+    style A fill:#e1f5ff
+    style G fill:#c8e6c9
+    style B fill:#fff9c4
+```
+
+
 ## 🎯 Features
 
 - Spark SQL
