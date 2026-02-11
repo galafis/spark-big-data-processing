@@ -36,7 +36,6 @@ graph TB
     style B fill:#fff9c4
 ```
 
-
 ## 🎯 Features
 
 - Spark SQL
@@ -98,8 +97,6 @@ Comprehensive examples and documentation included in the `notebooks/` directory.
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-
 
 ## 💻 Detailed Code Examples
 
@@ -547,9 +544,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📊 Project Statistics
 
-![GitHub stars](https://img.shields.io/github/stars/galafis/spark-big-data-processing?style=social)
-![GitHub forks](https://img.shields.io/github/forks/galafis/spark-big-data-processing?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/galafis/spark-big-data-processing?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/galafis/spark-big-data-processing)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/galafis/spark-big-data-processing)
 ![GitHub last commit](https://img.shields.io/github/last-commit/galafis/spark-big-data-processing)
