@@ -1,283 +1,117 @@
-# 📊 Spark Big Data Processing
+# Spark Big Data Processing
 
-> Professional Python project implementing Spark Big Data Processing
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![Apache_Spark](https://img.shields.io/badge/Apache_Spark-3.5-E25A1C.svg)](https://img.shields.io/badge/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+Framework simulador de processamento de big data inspirado no Apache Spark. Implementa MapReduce, particionamento de dados, shuffle/sort, word count, pipelines de agregacao e deteccao de data skew -- tudo sem dependencias externas de big data.
 
-[English](#english) | [Português](#português)
+Big data processing framework simulator inspired by Apache Spark. Implements MapReduce, data partitioning, shuffle/sort, word count, aggregation pipelines, and data skew detection -- all without external big data dependencies.
 
 ---
 
-## English
-
-### 🎯 Overview
-
-**Spark Big Data Processing** is a production-grade Python application that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
-
-The codebase comprises **125 lines** of source code organized across **2 modules**, following industry best practices for maintainability, scalability, and code quality.
-
-### ✨ Key Features
-
-- **🔄 Data Pipeline**: Scalable ETL with parallel processing
-- **✅ Data Validation**: Schema validation and quality checks
-- **📊 Monitoring**: Pipeline health metrics and alerting
-- **🔧 Configurability**: YAML/JSON-based pipeline configuration
-- **🏗️ Object-Oriented**: 4 core classes with clean architecture
-
-### 🏗️ Architecture
+## Arquitetura / Architecture
 
 ```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
+graph LR
+    subgraph Input["Entrada / Input"]
+        D1[Raw Data]
+        D2[Text Files]
     end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
+
+    subgraph Partitioning["Particionamento"]
+        P1[Hash Partitioner]
+        P2[Partition 0]
+        P3[Partition 1]
+        P4[Partition N]
     end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+
+    subgraph MapReduce["MapReduce Engine"]
+        M1[Map Phase] --> S1[Shuffle & Sort]
+        S1 --> R1[Reduce Phase]
+    end
+
+    subgraph Analytics["Analise"]
+        A1[Aggregation Pipeline]
+        A2[Data Skew Detector]
+        A3[Word Count]
+    end
+
+    D1 --> P1
+    D2 --> P1
+    P1 --> P2
+    P1 --> P3
+    P1 --> P4
+    P2 --> M1
+    P3 --> M1
+    P4 --> M1
+    R1 --> A1
+    R1 --> A2
+    R1 --> A3
 ```
 
-### 🚀 Quick Start
-
-#### Prerequisites
-
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/galafis/spark-big-data-processing.git
-cd spark-big-data-processing
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python src/main.py
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Project Structure
-
-```
-spark-big-data-processing/
-├── assets/
-├── config/        # Configuration
-├── data/
-├── docs/          # Documentation
-├── notebooks/
-├── python/
-│   └── pyspark/
-├── scala/
-│   └── src/          # Source code
-│       └── main/
-├── tests/         # Test suite
-│   └── test_models.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 🛠️ Tech Stack
-
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **Apache Spark** | Distributed computing | Framework |
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
-
----
-
-## Português
-
-### 🎯 Visão Geral
-
-**Spark Big Data Processing** é uma aplicação Python de nível profissional que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
-
-A base de código compreende **125 linhas** de código-fonte organizadas em **2 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **🔄 Data Pipeline**: Scalable ETL with parallel processing
-- **✅ Data Validation**: Schema validation and quality checks
-- **📊 Monitoring**: Pipeline health metrics and alerting
-- **🔧 Configurability**: YAML/JSON-based pipeline configuration
-- **🏗️ Object-Oriented**: 4 core classes with clean architecture
-
-### 🏗️ Arquitetura
+## Fluxo MapReduce / MapReduce Flow
 
 ```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
-    end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
-    end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+sequenceDiagram
+    participant Client
+    participant Partitioner
+    participant MapPhase
+    participant ShuffleSort
+    participant ReducePhase
+
+    Client->>Partitioner: partition(data)
+    Partitioner-->>MapPhase: List of Partitions
+    MapPhase->>MapPhase: Apply mapper to each element
+    MapPhase-->>ShuffleSort: List of (key, value) pairs
+    ShuffleSort->>ShuffleSort: Group by key, sort
+    ShuffleSort-->>ReducePhase: Dict of key -> values
+    ReducePhase->>ReducePhase: Apply reducer per key
+    ReducePhase-->>Client: Final results
 ```
 
-### 🚀 Início Rápido
+## Funcionalidades / Features
 
-#### Prerequisites
+| Funcionalidade / Feature | Descricao / Description |
+|---|---|
+| MapReduce Engine | Motor MapReduce com map, shuffle/sort e reduce / MapReduce engine with map, shuffle/sort and reduce phases |
+| Partitioner | Particionamento hash-based configuravel / Configurable hash-based data partitioning |
+| Word Count | Contagem de palavras classica via MapReduce / Classic word count via MapReduce |
+| Aggregation Pipeline | API fluente para agregacoes encadeadas / Fluent API for chained aggregations (sum, avg, count, min, max) |
+| Data Skew Detector | Deteccao de skew em particoes e hot-keys / Partition skew and hot-key detection |
+| Sample Data Generator | Gerador de dados para testes / Test data generator with reproducible seeds |
 
-- Python 3.12+
-- pip (Python package manager)
+## Inicio Rapido / Quick Start
 
-#### Installation
+```python
+from src.processing_engine import word_count, AggregationPipeline, generate_sample_data
+
+# Word Count
+counts = word_count(["hello world hello", "world of data"])
+# {'data': 1, 'hello': 2, 'of': 1, 'world': 2}
+
+# Aggregation Pipeline
+data = generate_sample_data(n=500)
+result = (
+    AggregationPipeline(data)
+    .filter(lambda r: r["amount"] > 100)
+    .group_by("region")
+    .aggregate("amount", "sum")
+    .sort("amount_sum", reverse=True)
+    .execute()
+)
+```
+
+## Testes / Tests
 
 ```bash
-# Clone the repository
-git clone https://github.com/galafis/spark-big-data-processing.git
-cd spark-big-data-processing
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+pytest tests/ -v
 ```
 
-#### Running
+## Tecnologias / Technologies
 
-```bash
-# Run the application
-python src/main.py
-```
+- Python 3.9+
+- pytest
 
-### 🧪 Testing
+## Licenca / License
 
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Estrutura do Projeto
-
-```
-spark-big-data-processing/
-├── assets/
-├── config/        # Configuration
-├── data/
-├── docs/          # Documentation
-├── notebooks/
-├── python/
-│   └── pyspark/
-├── scala/
-│   └── src/          # Source code
-│       └── main/
-├── tests/         # Test suite
-│   └── test_models.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **Apache Spark** | Distributed computing | Framework |
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+MIT License - veja [LICENSE](LICENSE) / see [LICENSE](LICENSE).
