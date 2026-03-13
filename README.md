@@ -2,6 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker)](Dockerfile)
 
 Framework simulador de processamento de big data inspirado no Apache Spark. Implementa MapReduce, particionamento de dados, shuffle/sort, word count, pipelines de agregacao e deteccao de data skew -- tudo sem dependencias externas de big data.
 
